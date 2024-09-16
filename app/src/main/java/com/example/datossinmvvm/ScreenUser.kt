@@ -2,7 +2,6 @@ package com.example.datossinmvvm
 
 import android.content.Context
 import android.util.Log
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -34,7 +33,6 @@ fun ScreenUser() {
     ) {
         Spacer(Modifier.height(50.dp))
 
-        // ID field (read-only)
         TextField(
             value = id,
             onValueChange = { id = it },
@@ -44,7 +42,6 @@ fun ScreenUser() {
             modifier = Modifier.fillMaxWidth()
         )
 
-        // First name field
         TextField(
             value = firstName,
             onValueChange = { firstName = it },
@@ -53,7 +50,6 @@ fun ScreenUser() {
             modifier = Modifier.fillMaxWidth()
         )
 
-        // Last name field
         TextField(
             value = lastName,
             onValueChange = { lastName = it },
@@ -62,7 +58,6 @@ fun ScreenUser() {
             modifier = Modifier.fillMaxWidth()
         )
 
-        // Add user button
         Button(
             onClick = {
                 val user = User(0, firstName, lastName)
@@ -77,7 +72,6 @@ fun ScreenUser() {
             Text("Agregar Usuario", fontSize = 16.sp)
         }
 
-        // List users button
         Button(
             onClick = {
                 coroutineScope.launch {
@@ -90,7 +84,6 @@ fun ScreenUser() {
             Text("Listar Usuarios", fontSize = 16.sp)
         }
 
-        // Show list of users
         Text(
             text = dataUser.value,
             fontSize = 20.sp,
