@@ -53,7 +53,7 @@ fun ScreenUser() {
                     }
                     IconButton(onClick = {
                         coroutineScope.launch {
-                            userList = dao.getAll() // Obtener lista de usuarios directamente
+                            userList = dao.getAll()
                             dataUser.value = userList.joinToString("\n") { "${it.firstName} ${it.lastName}" }
                         }
                     }) {
@@ -113,7 +113,7 @@ fun ScreenUser() {
                     onClick = {
                         coroutineScope.launch {
                             eliminarUltimoUsuario(dao = dao)
-                            userList = dao.getAll() // Obtener lista de usuarios actualizada
+                            userList = dao.getAll()
                             dataUser.value = userList.joinToString("\n") { "${it.firstName} ${it.lastName}" }
                         }
                     },
@@ -135,7 +135,7 @@ fun ScreenUser() {
                 ) {
                     items(userList) { user ->
                         UserListItem(user = user)
-                        Divider() // Añadir separación entre los items de la lista
+                        Divider()
                     }
                 }
             }
