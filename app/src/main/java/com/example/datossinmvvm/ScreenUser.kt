@@ -84,6 +84,19 @@ fun ScreenUser() {
             Text("Listar Usuarios", fontSize = 16.sp)
         }
 
+        Button(
+            onClick = {
+                coroutineScope.launch {
+                    eliminarUltimoUsuario(dao = dao)
+                    val data = getUsers(dao = dao)
+                    dataUser.value = data
+                }
+            },
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text("Eliminar Último Usuario", fontSize = 16.sp)
+        }
+
         Text(
             text = dataUser.value,
             fontSize = 20.sp,
@@ -91,6 +104,7 @@ fun ScreenUser() {
         )
     }
 }
+
 
 @Composable
 fun crearDatabase(context: Context): UserDatabase {
@@ -116,6 +130,14 @@ suspend fun AgregarUsuario(user: User, dao: UserDao) {
         dao.insert(user)
     } catch (e: Exception) {
         Log.e("User", "Error: insert: ${e.message}")
+    }
+}
+
+suspend fun eliminarUltimoUsuario(dao: UserDao) {
+    try {
+        dao.deleteUser()
+    } catch (e: Exception) {
+        Log.e("User", "Error: delete: ${e.message}")
     }
 }
 
